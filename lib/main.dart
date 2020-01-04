@@ -112,7 +112,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                     ],
                   ));
                 } else {
-                  return Column(
+                  return Center( child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Image.asset(url_image),
@@ -127,7 +127,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                                   : 2),
                               child: CameraPreview(_controller)))),
                     ],
-                  );
+                  ));
                 }
               },
             );
