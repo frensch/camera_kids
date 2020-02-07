@@ -55,7 +55,12 @@ class StateMainScaffold extends State<MainScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder<void>(
+        body:
+        Container(
+          decoration: BoxDecoration(
+            image:  new DecorationImage(image: new AssetImage("assets/images/background1.jpg"), fit: BoxFit.cover,),
+          ),
+          child: FutureBuilder<void>(
       future: initializeControllerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
@@ -68,6 +73,6 @@ class StateMainScaffold extends State<MainScaffold> {
           return Center(child: CircularProgressIndicator());
         }
       },
-    ));
+    )));
   }
 }

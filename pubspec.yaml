@@ -44,6 +44,7 @@ flutter_icons:
   ios: true
 
 
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -56,6 +57,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/patinho.gif
+    - assets/images/background1.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -22,9 +22,11 @@ Future<void> main() async {
 
   //SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
   //   .then((_) {
+
+  ThemeData themeData = new ThemeData(backgroundColor: Colors.grey);
   runApp(
     MaterialApp(
-      theme: ThemeData.dark(),
+      theme: themeData,
       home: TakePictureScreen(
         // Pass the appropriate camera to the TakePictureScreen widget.
         camera: selfieCamera,
