@@ -28,6 +28,7 @@ dependencies:
   native_device_orientation:
   gallery_saver:
   permission_handler:
+  album_saver:
 
 dependency_overrides:
   image: 2.0.7

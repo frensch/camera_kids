@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:camera_kids/CorrectRotation.dart';
-import 'package:gallery_saver/gallery_saver.dart';
+import 'package:album_saver/album_saver.dart';
 import 'dart:async';
 
 import 'package:path/path.dart' show join;
@@ -46,7 +46,8 @@ class StateMainScaffold extends State<MainScaffold> {
       await initializeControllerFuture;
       await cameraController.takePicture(path);
 
-      GallerySaver.saveImage(path);
+      //GallerySaver.saveImage(path);
+      AlbumSaver.saveToAlbum(filePath: path, albumName: "Selfie4Babies");
     } catch (e) {
       print(e);
     }
