@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:camera_kids/CorrectRotation.dart';
-import 'package:album_saver/album_saver.dart';
 import 'dart:async';
 
 import 'package:path/path.dart' show join;
@@ -23,14 +22,20 @@ class StateMainScaffold extends State<MainScaffold> {
   final CameraController cameraController;
   final Future<void> initializeControllerFuture;
 
-  StateMainScaffold(this.cameraController, this.initializeControllerFuture);
+  String dcimPath;
+  StateMainScaffold(this.cameraController, this.initializeControllerFuture) {
+    getExternalStorageDirectory().then((value) {
+      dcimPath =  join(value.path , "DCIM/Camera");
+    });
+  }
+
 
   void _takePicture() async {
     setState(() {
       CorrectRotation.pressedButton = true;
     });
 
-    Timer(Duration(milliseconds: 200), () {
+    Timer(Duration(milliseconds: 300), () {
       print("Yeah, this line is printed after 3 seconds");
       setState(() {
         CorrectRotation.pressedButton = false;
@@ -39,15 +44,13 @@ class StateMainScaffold extends State<MainScaffold> {
 
     try {
       final path = join(
-        (await getTemporaryDirectory()).path,
+        dcimPath,
         '${DateTime.now()}.jpg',
       );
 
+      print(path);
       await initializeControllerFuture;
       await cameraController.takePicture(path);
-
-      //GallerySaver.saveImage(path);
-      AlbumSaver.saveToAlbum(filePath: path, albumName: "Selfie4Babies");
     } catch (e) {
       print(e);
     }
@@ -59,7 +62,7 @@ class StateMainScaffold extends State<MainScaffold> {
         body:
         Container(
           decoration: BoxDecoration(
-            image:  new DecorationImage(image: new AssetImage("assets/images/background1.jpg"), fit: BoxFit.cover,),
+            image:  new DecorationImage(image: new AssetImage(CorrectRotation.pressedButton ? "assets/images/background1_black.jpg" : "assets/images/background1.jpg"), fit: BoxFit.cover,),
           ),
           child: FutureBuilder<void>(
       future: initializeControllerFuture,
